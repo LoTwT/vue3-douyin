@@ -1,0 +1,281 @@
+.video {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  background: #0f0f0f;
+}
+
+.video a {
+  font-size: 34rem;
+}
+
+/*  */
+.video-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.video-container video {
+  position: fixed;
+  left: 0;
+  width: 100%;
+}
+
+/*  */
+.top-nav {
+  height: 100rem;
+  width: 100%;
+  line-height: 100rem;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  display: flex;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0)
+  );
+}
+.top-nav a {
+  opacity: 0.6;
+}
+
+.icon-container {
+  width: 100rem;
+  text-align: center;
+  padding-top: 20rem;
+}
+.icon-container .icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 60rem;
+  height: 60rem;
+}
+
+.icon-container .icon-live {
+  background-image: url(../imgs/live.png);
+}
+.icon-container .icon-search {
+  background-image: url(../imgs/search.png);
+}
+
+.tab-container {
+  flex: 1;
+  text-align: center;
+}
+.tab-container .tab-item {
+  padding: 0 38rem;
+  position: relative;
+  text-shadow: 2px 2px 6px #999;
+}
+.tab-container .tab-item.active {
+  opacity: 1;
+}
+.tab-container .tab-item.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -17rem;
+
+  background: #fff;
+  width: 44rem;
+  margin-left: -22rem;
+  height: 4rem;
+  box-shadow: 2px 2px 6px #999;
+}
+
+/*  */
+.bottom-nav {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.bottom-nav .icon {
+}
+.bottom-nav .icon-hot {
+}
+.bottom-nav .icon-tiktok {
+}
+
+.bottom-nav .info {
+  font-size: 28rem;
+  padding-left: 26rem;
+  width: 510rem;
+}
+.bottom-nav .info .author {
+  font-size: 32rem;
+  line-height: 54rem;
+  font-weight: 700;
+}
+.bottom-nav .info .desc {
+  line-height: 40rem;
+}
+.bottom-nav .info .music {
+  height: 54rem;
+  line-height: 54rem;
+  display: flex;
+  margin: 10rem 0 20rem;
+}
+.bottom-nav .info .music .title {
+}
+.bottom-nav .info .music .icon-tiktok {
+  display: inline-block;
+  width: 32rem;
+  height: 32rem;
+  background: url(../imgs/icon-tiktok.png);
+  background-size: 100%;
+  position: relative;
+  top: 10rem;
+  margin-right: 10rem;
+}
+
+.bottom-nav .break-news {
+  height: 80rem;
+  line-height: 80rem;
+  padding-left: 26rem;
+  width: 100%;
+
+  background: rgba(0, 0, 0, 0.6);
+  font-weight: 700;
+  color: #f3cf4a;
+}
+.bottom-nav .break-news .icon-hot {
+  display: inline-block;
+  width: 28rem;
+  height: 32rem;
+  background: url(../imgs/icon-hot.png) no-repeat;
+  background-size: 100%;
+  position: relative;
+  top: 6rem;
+}
+.bottom-nav .break-news .right {
+}
+
+.bottom-nav .btns {
+  border-top: 1px solid #222222;
+  display: flex;
+  height: 98rem;
+}
+.bottom-nav .btns .btn {
+  flex: 1;
+  line-height: 98rem;
+  text-align: center;
+  opacity: 0.6;
+  font-size: 30rem;
+}
+.bottom-nav .btns .active {
+  opacity: 1;
+  position: relative;
+}
+.bottom-nav .btns .active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 68rem;
+  height: 4rem;
+  border-radius: 2rem;
+  background: #fff;
+  margin-left: -34rem;
+}
+
+.bottom-nav .btns .btn-add {
+  width: 84rem;
+  height: 56rem;
+  background: url(../imgs/btn-add.png) no-repeat;
+  background-size: 100%;
+  margin-top: 19rem;
+  margin: 19rem 40rem 0;
+}
+.bottom-nav .btns .btn.active {
+}
+
+/*  */
+.right-asider {
+  position: absolute;
+  right: 15rem;
+  bottom: 200rem;
+  width: 100rem;
+}
+
+.right-asider .icon {
+  display: block;
+  width: 80rem;
+  height: 80rem;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 0 auto;
+}
+.right-asider .icon-heart {
+  background-image: url(../imgs/icon-heart.png);
+}
+.right-asider .icon-heart-fill {
+  background-image: url(../imgs/icon-heart-fill.png);
+}
+.right-asider .icon-comment {
+  background-image: url(../imgs/icon-comment.png);
+}
+.right-asider .icon-share {
+  background-image: url(../imgs/icon-share.png);
+}
+
+.right-asider .desc {
+  text-align: center;
+  margin-top: 10rem;
+  margin-bottom: 40rem;
+}
+
+.right-asider .author {
+  position: relative;
+  left: 6rem;
+  margin-bottom: 40rem;
+}
+.right-asider .author-avatar {
+  width: 98rem;
+  height: 98rem;
+  border: 3px solid #e9445a;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.right-asider .author img {
+  width: 86rem;
+  height: 86rem;
+}
+.right-asider .author .add-btn {
+  width: 42rem;
+  height: 42rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 28rem;
+  top: 71rem;
+  background: url(../imgs/author-plus.png) no-repeat center;
+  background-size: 100%;
+}
+
+.right-asider .like {
+}
+.right-asider .comment {
+}
+.right-asider .share {
+}
+
+.right-asider .music {
+}
+.right-asider .music img {
+  width: 98rem;
+  height: 98rem;
+  animation-name: rotating;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.right-asider {
+}
