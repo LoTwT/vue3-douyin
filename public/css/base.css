@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+  color: #fff;
+  font-family: "microsoft yahei";
+  font-size: 28rem;
+}
+
+html {
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+html {
+  height: 100%;
+  background-color: #f4f4f4;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  font-size: 0.5px;
+}
+
+/*  */
+@keyframes rotating {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* splash */
+.splash {
+  background: #120c17;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.splash img {
+  display: block;
+  width: 236rem;
+  height: 387rem;
+  margin: 40% auto 0;
+}
