@@ -2,7 +2,7 @@
   <div class="video-container">
     <video
       ref="videoTag"
-      :src="getVideo(props.src)"
+      :src="getVideo(src)"
       style="top: 0"
       autoplay
       loop
@@ -35,7 +35,7 @@ export default defineComponent({
         });
     });
 
-    return { props, videoTag, getVideo };
+    return { videoTag, getVideo };
   },
 });
 </script>
