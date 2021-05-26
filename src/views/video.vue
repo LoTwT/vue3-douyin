@@ -5,8 +5,12 @@
       :currCategory="videoCategory"
       @update:category="videoCategory = $event"
     />
-    <bottom-nav />
-    <right-asider />
+    <div class="bottom-nav">
+      <video-info v-if="videoList.length > 0" :video="videoList[0]" />
+      <bottom-nav />
+    </div>
+
+    <right-asider v-if="videoList.length > 0" :video="videoList[0]" />
   </div>
 </template>
 
@@ -17,11 +21,12 @@ import axios from "../axios";
 import "../assets/css/video.css";
 import container from "../components/video/container.vue";
 import topNav from "../components/video/top_nav.vue";
+import videoInfo from "../components/video/video_info.vue";
 import bottomNav from "../components/video/bottom_nav.vue";
 import rightAsider from "../components/video/right_asider.vue";
 
 export default defineComponent({
-  components: { container, topNav, bottomNav, rightAsider },
+  components: { container, topNav, videoInfo, bottomNav, rightAsider },
   setup() {
     const videoCategory = ref("recommend");
     const videoList = ref([]);
