@@ -2,7 +2,7 @@
   <div class="video-container">
     <video
       ref="videoTag"
-      :src="props.src"
+      :src="getVideo(props.src)"
       style="top: 0"
       autoplay
       loop
@@ -14,12 +14,12 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
+import { getVideo } from "../../utils/common";
 
 export default defineComponent({
   props: ["src"],
   setup(props) {
     const videoTag = ref<any | null>(null);
-
     onMounted(() => {
       const videoElement = videoTag.value;
       videoElement &&
@@ -35,7 +35,7 @@ export default defineComponent({
         });
     });
 
-    return { props, videoTag };
+    return { props, videoTag, getVideo };
   },
 });
 </script>

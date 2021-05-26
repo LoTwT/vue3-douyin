@@ -1,6 +1,6 @@
 <template>
   <div class="video">
-    <container src="/videos/f94f8ff6-92d9-4b16-a582-ac71b553c30b.mp4" />
+    <container v-if="videoList.length > 0" :src="videoList[0].video" />
     <top-nav />
     <bottom-nav />
     <right-asider />
@@ -8,7 +8,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import axios from "../axios";
+
 import "../assets/css/video.css";
 import container from "../components/video/container.vue";
 import topNav from "../components/video/top_nav.vue";
@@ -17,6 +19,11 @@ import rightAsider from "../components/video/right_asider.vue";
 
 export default defineComponent({
   components: { container, topNav, bottomNav, rightAsider },
-  setup() {},
+  setup() {
+    const videoList = ref([]);
+    axios("/video/list/recomend").then((res) => (videoList.value = res.data));
+
+    return { videoList };
+  },
 });
 </script>
