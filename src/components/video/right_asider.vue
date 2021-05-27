@@ -10,7 +10,7 @@
       <b class="icon icon-heart"></b>
       <div class="desc">{{ numberToString(video.likes) }}</div>
     </div>
-    <div class="comment">
+    <div class="comment" @click="$emit('show:comment')">
       <b class="icon icon-comment"></b>
       <div class="desc">{{ numberToString(video.comments) }}</div>
     </div>

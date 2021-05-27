@@ -9,8 +9,17 @@
       <video-info v-if="videoList.length > 0" :video="videoList[0]" />
       <bottom-nav />
     </div>
+    <right-asider
+      v-if="videoList.length > 0"
+      :video="videoList[0]"
+      @show:comment="videoCommentShow = true"
+    />
 
-    <right-asider v-if="videoList.length > 0" :video="videoList[0]" />
+    <videwo-comment
+      v-if="videoList.length > 0 && videoCommentShow"
+      @close:comment="videoCommentShow = false"
+      :video="videoList[0]"
+    />
   </div>
 </template>
 
@@ -25,10 +34,23 @@ import videoInfo from "../components/video/video_info.vue";
 import bottomNav from "../components/video/bottom_nav.vue";
 import rightAsider from "../components/video/right_asider.vue";
 
+import videwoComment from "../components/video/comment.vue";
+
 export default defineComponent({
-  components: { container, topNav, videoInfo, bottomNav, rightAsider },
+  components: {
+    container,
+    topNav,
+    videoInfo,
+    bottomNav,
+    rightAsider,
+    videwoComment,
+  },
   setup() {
+    // 是否显示评论
+    const videoCommentShow = ref(false);
+    // 视频类别
     const videoCategory = ref("recommend");
+    // 视频数据
     const videoList = ref([]);
 
     const loadData = () => {
@@ -41,7 +63,7 @@ export default defineComponent({
       loadData();
     });
 
-    return { videoList, videoCategory };
+    return { videoList, videoCategory, videoCommentShow };
   },
 });
 </script>
