@@ -13,6 +13,7 @@
       v-if="videoList.length > 0"
       :video="videoList[0]"
       @show:comment="videoCommentShow = true"
+      @update:like="changeLike"
     />
 
     <videwo-comment
@@ -63,7 +64,16 @@ export default defineComponent({
       loadData();
     });
 
-    return { videoList, videoCategory, videoCommentShow };
+    function changeLike(liked: boolean) {
+      (videoList.value[0] as any).liked = liked;
+    }
+
+    return {
+      videoList,
+      videoCategory,
+      videoCommentShow,
+      changeLike,
+    };
   },
 });
 </script>
