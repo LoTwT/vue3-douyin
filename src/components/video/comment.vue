@@ -6,11 +6,13 @@
       @click="$emit('close:comment')"
     ></a>
 
-    <div class="locale">
+    <div class="locale" v-if="video.locale">
       <div class="icon-locale"></div>
       <div class="locale-name">
-        <div class="locale-title">温州市·永嘉县</div>
-        <div class="locale-desc">温州市 | 6264.1w次看过</div>
+        <div class="locale-title">
+          {{ video.locale.title }}·{{ video.locale.subtitle }}
+        </div>
+        <div class="locale-desc">{{ video.locale.title }}</div>
       </div>
     </div>
 
@@ -23,18 +25,18 @@
         :key="index"
       >
         <div class="avatar">
-          <img src="/src/assets/imgs/avatar.jpg" alt="" />
+          <img :src="getResource(comment.avatar)" alt="" />
         </div>
         <div class="container">
-          <div class="name">_小王</div>
+          <div class="name">{{ comment.name }}</div>
           <div class="content">
-            这个不好说，但也不是不能说
-            <span class="time">7小时前</span>
+            {{ comment.content }}
+            <span class="time">{{ timestampsToString(comment.time) }}</span>
           </div>
         </div>
         <div class="heart">
           <b class="heart-icon"></b>
-          <div class="count">6.3w</div>
+          <div class="count">{{ numberToString(comment.likes) }}</div>
         </div>
       </div>
     </div>
@@ -50,6 +52,11 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import axios from "../../axios";
+import {
+  getResource,
+  numberToString,
+  timestampsToString,
+} from "../../utils/common";
 
 export default defineComponent({
   props: ["video"],
@@ -63,6 +70,9 @@ export default defineComponent({
 
     return {
       commentList,
+      getResource,
+      numberToString,
+      timestampsToString,
     };
   },
 });

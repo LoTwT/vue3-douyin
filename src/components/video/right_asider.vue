@@ -26,19 +26,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { getResource } from "../../utils/common";
+import { getResource, numberToString } from "../../utils/common";
 
 export default defineComponent({
   props: ["video"],
   setup() {
-    const numberToString = (num: number): string => {
-      if (num > 10000) {
-        return (num / 10000).toFixed(1) + "w";
-      } else {
-        return num.toString();
-      }
-    };
-
     return {
       getResource,
       numberToString,
