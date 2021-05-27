@@ -17,7 +17,7 @@
       <b class="icon icon-comment"></b>
       <div class="desc">{{ numberToString(video.comments) }}</div>
     </div>
-    <div class="share">
+    <div class="share" @click="$emit('show:share')">
       <b class="icon icon-share"></b>
       <div class="desc">{{ numberToString(video.shares) }}</div>
     </div>

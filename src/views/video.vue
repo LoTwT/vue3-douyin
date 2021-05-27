@@ -13,14 +13,17 @@
       v-if="videoList.length > 0"
       :video="videoList[0]"
       @show:comment="videoCommentShow = true"
+      @show:share="videoShareShow = true"
       @update:like="changeLike"
     />
 
-    <videwo-comment
+    <video-comment
       v-if="videoList.length > 0 && videoCommentShow"
       @close:comment="videoCommentShow = false"
       :video="videoList[0]"
     />
+
+    <viedo-share v-if="videoShareShow" @close:share="videoShareShow = false" />
   </div>
 </template>
 
@@ -35,7 +38,8 @@ import videoInfo from "../components/video/video_info.vue";
 import bottomNav from "../components/video/bottom_nav.vue";
 import rightAsider from "../components/video/right_asider.vue";
 
-import videwoComment from "../components/video/comment.vue";
+import videoComment from "../components/video/comment.vue";
+import viedoShare from "../components/video/share.vue";
 
 export default defineComponent({
   components: {
@@ -44,7 +48,8 @@ export default defineComponent({
     videoInfo,
     bottomNav,
     rightAsider,
-    videwoComment,
+    videoComment,
+    viedoShare,
   },
   setup() {
     // 是否显示评论
@@ -53,6 +58,8 @@ export default defineComponent({
     const videoCategory = ref("recommend");
     // 视频数据
     const videoList = ref([]);
+    // 分享
+    const videoShareShow = ref(false);
 
     const loadData = () => {
       axios(`/video/list/${videoCategory.value}`).then(
@@ -73,6 +80,7 @@ export default defineComponent({
       videoCategory,
       videoCommentShow,
       changeLike,
+      videoShareShow,
     };
   },
 });
