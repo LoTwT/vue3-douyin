@@ -18,7 +18,7 @@
 
     <div class="comment-count">{{ video.comments }}条评论</div>
 
-    <div class="comment-list">
+    <div class="comment-list" @scroll="scrollComment">
       <div
         class="comment-item"
         v-for="(comment, index) in commentList"
@@ -50,7 +50,7 @@
 
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watchEffect } from "vue";
 import axios from "../../axios";
 import {
   getResource,
@@ -61,18 +61,45 @@ import {
 export default defineComponent({
   props: ["video"],
   setup(props) {
-    const commentList = ref([]);
-    axios(`/video/comment/${props.video.ID}`, {
-      params: {
-        page: 1,
-      },
-    }).then((res) => (commentList.value = res.data));
+    const commentList = ref<any>([]);
+    const commentPage = ref(1);
+
+    const stopRequest = watchEffect(() => {
+      axios(`/video/comment/${props.video.ID}`, {
+        params: {
+          page: commentPage.value,
+        },
+      }).then((res) => {
+        if (res.data.length === 0) {
+          stopRequest();
+          return;
+        }
+        commentList.value = [...commentList.value, ...res.data];
+      });
+    });
+
+    function scrollComment(ev: Event) {
+      const divList = ev.target;
+      if (divList) {
+        // 滚动高度
+        const scrollHeight = (divList as HTMLDivElement).scrollTop;
+        // 实际内容高度
+        const contentHeight = (divList as HTMLDivElement).scrollHeight;
+        // 父级高度
+        const parentHeight = (divList as HTMLDivElement).offsetHeight;
+
+        if (scrollHeight + 10 >= contentHeight - parentHeight) {
+          commentPage.value++;
+        }
+      }
+    }
 
     return {
       commentList,
       getResource,
       numberToString,
       timestampsToString,
+      scrollComment,
     };
   },
 });
