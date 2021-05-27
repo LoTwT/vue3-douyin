@@ -41,9 +41,16 @@
       </div>
     </div>
 
-    <div class="input-container">
-      <input type="text" class="input" placeholder="有爱评论，说点儿好听的 ~" />
-      <button type="button" class="btn">发送</button>
+    <div class="input-container" :class="{ active: inputFocus }">
+      <input
+        type="text"
+        class="input"
+        placeholder="有爱评论，说点儿好听的 ~"
+        @focus="showButton"
+        @blur="hideButton"
+        v-model="commentContent"
+      />
+      <button type="button" class="btn" @click="submitComment">发送</button>
     </div>
   </div>
 </template>
@@ -63,6 +70,8 @@ export default defineComponent({
   setup(props) {
     const commentList = ref<any>([]);
     const commentPage = ref(1);
+    const inputFocus = ref(false);
+    const commentContent = ref("");
 
     const stopRequest = watchEffect(() => {
       axios(`/video/comment/${props.video.ID}`, {
@@ -94,12 +103,34 @@ export default defineComponent({
       }
     }
 
+    const showButton = () => (inputFocus.value = true);
+
+    const hideButton = () => setTimeout(() => (inputFocus.value = false), 50);
+
+    const submitComment = () => {
+      axios
+        .post(`/video/comment/${props.video.ID}`, {
+          content: commentContent.value,
+        })
+        .then((res) => {
+          if (res.data === "ok") {
+            commentContent.value = "";
+            alert("评论成功");
+          }
+        });
+    };
+
     return {
       commentList,
       getResource,
       numberToString,
       timestampsToString,
       scrollComment,
+      inputFocus,
+      submitComment,
+      commentContent,
+      showButton,
+      hideButton,
     };
   },
 });
@@ -225,12 +256,25 @@ export default defineComponent({
 
 .input-container {
   height: 98rem;
+  display: flex;
 }
 .input-container .input {
   padding: 0 32rem;
-  width: 100%;
+  flex: 1;
   height: 100%;
   border: none;
   background: transparent;
+}
+.input-container .btn {
+  width: 150rem;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+
+  display: none;
+}
+
+.input-container.active .btn {
+  display: block;
 }
 </style>
