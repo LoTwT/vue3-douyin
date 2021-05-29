@@ -97,12 +97,6 @@
   bottom: 0;
   width: 100%;
 }
-.bottom-nav .icon {
-}
-.bottom-nav .icon-hot {
-}
-.bottom-nav .icon-tiktok {
-}
 
 .bottom-nav .info {
   font-size: 28rem;
@@ -123,8 +117,7 @@
   display: flex;
   margin: 10rem 0 20rem;
 }
-.bottom-nav .info .music .title {
-}
+
 .bottom-nav .info .music .icon-tiktok {
   display: inline-block;
   width: 32rem;
@@ -154,8 +147,6 @@
   background-size: 100%;
   position: relative;
   top: 6rem;
-}
-.bottom-nav .break-news .right {
 }
 
 .bottom-nav .btns {
@@ -194,10 +185,7 @@
   margin-top: 19rem;
   margin: 19rem 40rem 0;
 }
-.bottom-nav .btns .btn.active {
-}
 
-/*  */
 .right-asider {
   position: absolute;
   right: 15rem;
@@ -243,6 +231,7 @@
   border: 3px solid #e9445a;
   border-radius: 50%;
   overflow: hidden;
+  display: block;
 }
 .right-asider .author img {
   width: 86rem;
@@ -259,15 +248,6 @@
   background-size: 100%;
 }
 
-.right-asider .like {
-}
-.right-asider .comment {
-}
-.right-asider .share {
-}
-
-.right-asider .music {
-}
 .right-asider .music img {
   width: 98rem;
   height: 98rem;
@@ -275,7 +255,4 @@
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-}
-
-.right-asider {
 }

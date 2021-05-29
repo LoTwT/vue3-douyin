@@ -1,9 +1,12 @@
 <template>
   <div class="right-asider">
     <div class="author">
-      <div class="author-avatar">
+      <router-link
+        :to="{ name: 'user', params: { id: video.author.ID } }"
+        class="author-avatar"
+      >
         <img :src="getResource(video.author.avatar)" />
-      </div>
+      </router-link>
       <b class="add-btn"></b>
     </div>
     <div class="like" @click="dealLike">
