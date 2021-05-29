@@ -1,22 +1,60 @@
 <template>
   <div class="videos">
-    <div class="video-item">
-      <img src="/src/assets/imgs/video-cover.png" alt="" />
-    </div>
-    <div class="video-item">
-      <img src="/src/assets/imgs/video-cover.png" alt="" />
-    </div>
-    <div class="video-item">
+    <div class="video-item" v-for="video in videoList" :key="video.ID">
       <img src="/src/assets/imgs/video-cover.png" alt="" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, watch, watchEffect } from "vue";
+import axios from "../../../axios";
 
 export default defineComponent({
-  setup() {},
+  props: ["userId"],
+  setup(props) {
+    const { userId } = props;
+    const videoList = ref<any>([]);
+    const page = ref(1);
+
+    const stopRequest = watchEffect(() => {
+      axios(`/video/user/${userId}`, {
+        params: {
+          page: 1,
+        },
+      }).then((res) => {
+        if (!res.data.length) {
+          stopRequest();
+          return;
+        }
+        videoList.value = [...videoList.value, ...res.data];
+      });
+    });
+
+    watchEffect((invalidaate) => {
+      const handle = () => {
+        // 滚动高度
+        const scrollHeight =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        // 屏幕高度(视窗高度)
+        const screenHeight = document.documentElement.clientHeight;
+        // 内容高度
+        const contentHeight = document.body.scrollHeight;
+        if (scrollHeight + 10 >= contentHeight - screenHeight) {
+          page.value++;
+        }
+      };
+      window.addEventListener("scroll", handle);
+
+      invalidaate(() => {
+        window.removeEventListener("scroll", handle);
+      });
+    });
+
+    return {
+      videoList,
+    };
+  },
 });
 </script>
 

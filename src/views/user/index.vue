@@ -3,7 +3,7 @@
     <user-header v-if="userInfo" :userInfo="userInfo" />
     <user-info v-if="userInfo" :userInfo="userInfo" />
     <tab-switch :userId="id" :tabs="tabs" v-model:curr="currTab">
-      <tab-instance v-if="currTab === 0" />
+      <tab-instance :userId="id" v-if="currTab === 0" />
       <span v-else>{{ tabs[currTab].title }}</span>
     </tab-switch>
   </div>
