@@ -29,6 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from "vue";
+import { useRouter } from "vue-router";
 import axios from "../axios";
 
 import "../assets/css/video.css";
@@ -52,6 +53,8 @@ export default defineComponent({
     viedoShare,
   },
   setup() {
+    const { uid } = useRouter().currentRoute.value.params;
+
     // 是否显示评论
     const videoCommentShow = ref(false);
     // 视频类别
@@ -61,14 +64,24 @@ export default defineComponent({
     // 分享
     const videoShareShow = ref(false);
 
-    const loadData = () => {
+    // 非指定用户进入时, 请求数据
+    const loadDefaultData = () => {
       axios(`/video/list/${videoCategory.value}`).then(
         (res) => (videoList.value = res.data)
       );
     };
 
+    // 指定用户进入时, 请求数据
+    const loadTargetData = () => {
+      axios(`/user/videos/${uid}`).then((res) => (videoList.value = res.data));
+    };
+
     watchEffect(() => {
-      loadData();
+      if (!uid) {
+        loadDefaultData();
+      } else {
+        loadTargetData();
+      }
     });
 
     function changeLike(liked: boolean) {

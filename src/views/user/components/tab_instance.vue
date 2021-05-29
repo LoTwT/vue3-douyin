@@ -1,13 +1,18 @@
 <template>
   <div class="videos">
-    <div class="video-item" v-for="video in videoList" :key="video.ID">
+    <router-link
+      :to="{ name: 'video', params: { uid: userId } }"
+      class="video-item"
+      v-for="video in videoList"
+      :key="video.ID"
+    >
       <img src="/src/assets/imgs/video-cover.png" alt="" />
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, watchEffect } from "vue";
+import { defineComponent, ref, watchEffect } from "vue";
 import axios from "../../../axios";
 
 export default defineComponent({

@@ -6,7 +6,7 @@ import User from "../views/user/index.vue"
 export default createRouter({
     history: createWebHistory("/"),
     routes: [
-        { path: "/", component: Video, name: "video" },
+        { path: "/:uid?", component: Video, name: "video" },
         { path: "/user/:id", component: User, name: "user" }
     ]
 })
