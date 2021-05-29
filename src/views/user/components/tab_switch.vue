@@ -1,6 +1,6 @@
 <template>
   <div class="tab-switch">
-    <div class="tab-btns">
+    <div class="tab-btns" v-if="tabs">
       <div
         class="tab-btn"
         :class="{ active: index === curr }"

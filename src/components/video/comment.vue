@@ -18,7 +18,7 @@
 
     <div class="comment-count">{{ video.comments }}条评论</div>
 
-    <div class="comment-list" @scroll="scrollComment">
+    <div class="comment-list" @scroll="scrollComment" v-if="commentList">
       <div
         class="comment-item"
         v-for="(comment, index) in commentList"
