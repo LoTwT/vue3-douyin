@@ -16,7 +16,7 @@
         :video="videoList[index0]"
         @show:comment="videoCommentShow = true"
         @show:share="videoShareShow = true"
-        @update:like="changeLike"
+        @updateLiked="changeLike"
       />
       <div class="bottom-nav">
         <video-info v-if="videoList.length > 0" :video="videoList[index0]" />
@@ -38,7 +38,7 @@
         :video="videoList[index1]"
         @show:comment="videoCommentShow = true"
         @show:share="videoShareShow = true"
-        @update:like="changeLike"
+        @updateLike="changeLike"
       />
       <div class="bottom-nav">
         <video-info v-if="videoList.length > 0" :video="videoList[index1]" />
@@ -46,8 +46,8 @@
     </div>
 
     <top-nav
-      :currCategory="videoCategory"
-      @update:category="videoCategory = $event"
+      :type="videoCategory"
+      @update:type="videoCategory = $event || 'recommend'"
     />
     <div class="bottom-nav">
       <bottom-nav />

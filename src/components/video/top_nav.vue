@@ -6,11 +6,11 @@
     <div class="tab-container">
       <a
         href="javascript:;"
-        v-for="(category, type) in categories"
-        :key="type"
+        v-for="(category, key) in categories"
+        :key="key"
         class="tab-item"
-        :class="{ active: currCategory === type }"
-        @click="setCategory(type)"
+        :class="{ active: key === type }"
+        @click="setCategory(key)"
         >{{ category }}</a
       >
     </div>
@@ -25,7 +25,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
-    currCategory: {
+    type: {
       type: String,
     },
   },
@@ -36,7 +36,7 @@ export default defineComponent({
         recommend: "推荐",
       },
       setCategory(type: string): void {
-        (this as any).$emit("update:category", type);
+        (this as any).$emit("update:type", type);
       },
     };
   },

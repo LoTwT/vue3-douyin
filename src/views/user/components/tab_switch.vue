@@ -5,7 +5,7 @@
         class="tab-btn"
         :class="{ active: index === curr }"
         v-for="(tab, index) in tabs"
-        :key="index"
+        :key="Number(index)"
         @click="$emit('update:curr', index)"
       >
         {{ tab.title }}

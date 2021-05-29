@@ -22,7 +22,7 @@
       <div
         class="comment-item"
         v-for="(comment, index) in commentList"
-        :key="index"
+        :key="Number(index)"
       >
         <div class="avatar">
           <img :src="getResource(comment.avatar)" alt="" />

@@ -49,7 +49,7 @@ export default defineComponent({
       }
 
       axios(url).then(
-        (res) => res.data === "ok" && context.emit("update:like", !video.liked)
+        (res) => res.data === "ok" && context.emit("updateLike", !video.liked)
       );
     };
 
