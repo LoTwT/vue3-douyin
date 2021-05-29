@@ -5,7 +5,7 @@ export function getResource(videoName: string) {
     return `${videoName}?apikey=${apikey}`
 }
 
-// 评论数转字符串
+// 数据数值转显示字符串
 export function numberToString(num: number): string {
     if (num > 10000) {
         return (num / 10000).toFixed(1) + "w";
